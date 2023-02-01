@@ -17,7 +17,7 @@ def home_page():
     return render_template("survey_start.html", survey=survey)
 
 
-@app.route("/begin", methods=["POST"])
+@app.route("/begin", methods=['GET',"POST"])
 def start_survey():
     """Clear the session of responses."""
 
@@ -26,7 +26,7 @@ def start_survey():
     return redirect("/questions/0")
 
 
-@app.route('/answer')
+@app.route('/answer', methods=['GET',"POST"])
 def handle_question():
     """Save response and redirect to next question."""
 
@@ -48,7 +48,7 @@ def handle_question():
 
 
 
-@app.route("/questions/<int:qid>")
+@app.route("/questions/<int:qid>", methods=['GET',"POST"] )
 def show_question(qid):
     """Display current question."""
     responses = session.get(RESPONSES_KEY)
